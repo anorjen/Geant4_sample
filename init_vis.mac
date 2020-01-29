@@ -1,0 +1,5 @@
+#
+/control/execute init.mac
+
+# Visualization setting
+/control/execute vis.mac

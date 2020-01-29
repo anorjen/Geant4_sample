@@ -1,0 +1,87 @@
+/control/verbose 2
+/run/verbose 2
+
+/testhadr/Physics    QBBC
+#FTFP_BERT
+#LHEP_PRECO
+#QGSP_BIC  
+#LHEP_PRECO_HP
+#QGS_BIC
+#QGSP_BERT    
+#QGSP_BIC_HP
+#QGSP_BERT_HP
+
+/run/initialize
+#
+# Create empty scene ("world" is default)
+/vis/scene/create
+#
+
+/vis/open OGL
+#
+#ATree DAWNFILE HepRepXML HepRepFile RayTracer VRML1FILE VRML2FILE gMocrenFile
+
+# Draw scene
+/vis/drawVolume
+/vis/viewer/set/viewpointThetaPhi 270 0 deg
+/vis/viewer/zoom 1.3
+/vis/viewer/flush
+#
+
+# for drawing the tracks
+# if too many tracks cause core dump => storeTrajectory 0
+/vis/scene/add/trajectories
+#/vis/scene/add/hits
+/tracking/storeTrajectory 1
+/vis/scene/endOfEventAction accumulate
+
+#Create a drawByCharge model named drawCharge-0 by default (Subsequent models will be named drawByCharge-1, drawByCharge-2, etc.)
+/vis/modeling/trajectories/create/drawByCharge
+
+#Configure drawByCharge-0 model 
+/vis/modeling/trajectories/drawByCharge-0/set 1 red
+/vis/modeling/trajectories/drawByCharge-0/set -1 blue
+/vis/modeling/trajectories/drawByCharge-0/set 0 green
+
+
+
+#A0
+/gun/position 0 0 -100 mm
+
+#A1
+#/gun/position -70 0 -100 mm
+
+#A2
+#/gun/position -45 -57.94 -100 mm
+
+#A3
+#/gun/position 0 -57.94 -100 mm
+
+
+#/vis/viewer/set/viewpointThetaPhi 270 0 deg
+
+/gun/particle neutron
+#pi+
+#neutron
+#proton
+#geantino
+/gun/energy 50 MeV
+/run/beamOn 
+
+#/vis/ogl/printEPS
+#/vis/viewer/set/viewpointThetaPhi 0 0 deg
+#/vis/ogl/printEPS
+
+
+#/gun/particle pi+
+#/gun/energy 200 MeV
+#/run/beamOn 20
+
+#/vis/ogl/printEPS
+
+
+#Create a generic model named generic-0 by default
+#/vis/modeling/trajectories/create/generic
+#Configure context to colour all trajectories red
+#/vis/modeling/trajectories/generic-0/default/setLineColour black
+#/vis/ogl/printEPS

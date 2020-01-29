@@ -1,0 +1,17 @@
+#/control/execute init.mac
+/control/execute init_vis.mac
+
+/gun/particle neutron
+/gun/energy 100 MeV
+
+/run/beamOn 10
+
+# set print mode to vectored
+#/vis/ogl/set/printMode vectored
+# set print size larger than screen
+#/vis/ogl/set/printSize 1200 1200
+
+## print pdf
+/vis/ogl/export
+##or eps
+#/vis/ogl/printEPS
